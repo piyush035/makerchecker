@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="../lib/clientLibs/alloy_patched.jar"/>
+	<classpathentry kind="lib" path="../lib//clientLibs/itext-1.00.jar"/>
+	<classpathentry kind="lib" path="../lib/clientLibs/commons-codec-1.3.jar"/>
+	<classpathentry kind="lib" path="../lib/clientLibs/patbinfree153.jar"/>
+	<classpathentry kind="lib" path="../lib/serversidelibs/log4j-1.2.15.jar"/>
+	<classpathentry kind="lib" path="../lib/generatedlibs/application.jar"/>
+	<classpathentry kind="lib" path="../lib/generatedlibs/common.jar"/>
+	<classpathentry kind="lib" path="../lib/generatedlibs/client-framework.jar"/>
+	<classpathentry kind="lib" path="../lib/generatedlibs/common-framework.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

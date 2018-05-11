@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+   http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd">
+
+	<bean id="sqlDataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName">
+			<value>java:MySqlDS</value>
+		</property>
+	</bean>
+	<bean id="userInformationDao" parent="abstractDefaultDao"
+		class="com.hotel.user.dao.impl.UserInformationDaoImpl">
+	</bean>
+	<bean id="userLoginDao" parent="abstractDefaultDao"
+		class="com.hotel.user.dao.impl.UserLoginDaoImpl">
+	</bean>
+	<bean id="rolesDao" parent="abstractDefaultDao" class="com.hotel.roles.dao.impl.RolesDaoImpl">
+	</bean>
+	<bean id="statesDao" parent="abstractDefaultDao"
+		class="com.hotel.states.dao.impl.StatesDaoImpl">
+	</bean>
+	<bean id="countryDao" parent="abstractDefaultDao"
+		class="com.hotel.country.dao.impl.CountryDaoImpl">
+	</bean>
+	<bean id="alertDao" parent="abstractDefaultDao" 
+		class="com.hotel.alert.dao.impl.AlertDaoImpl">
+	</bean>
+	<bean id="roomDao" parent="abstractDefaultDao"
+		class="com.hotel.room.dao.impl.RoomDaoImpl">
+	</bean>
+	<bean id="roomTypeDao" parent="abstractDefaultDao"
+		class="com.hotel.roomtype.dao.impl.RoomTypeDaoImpl">
+	</bean>
+</beans>
