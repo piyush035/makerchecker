@@ -13,7 +13,7 @@ public class User {
 	private String firstname;
 	private String lastname;
 	private String email;
-	private int phone;
+	private Integer phone;
 
 	public String getUsername() {
 		return username;
@@ -55,11 +55,11 @@ public class User {
 		this.email = email;
 	}
 
-	public int getPhone() {
+	public Integer getPhone() {
 		return phone;
 	}
 
-	public void setPhone(int phone) {
+	public void setPhone(Integer phone) {
 		this.phone = phone;
 	}
 }

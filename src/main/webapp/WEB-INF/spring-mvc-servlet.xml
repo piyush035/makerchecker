@@ -4,7 +4,11 @@
     <context:component-scan base-package="com.java.ee.maker.checker" />
     <context:annotation-config />
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/jsp/" />
-        <property name="suffix" value=".jsp" />
+        <property name="prefix">
+            <value>/WEB-INF/pages/</value>
+        </property>
+        <property name="suffix">
+            <value>.jsp</value>
+        </property>
     </bean>
 </beans>
