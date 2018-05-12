@@ -24,10 +24,10 @@ public class RegistrationController {
 		return mav;
 	}
 
-	@RequestMapping(value = "/registerProcess", method = RequestMethod.POST)
+	/*@RequestMapping(value = "/registerProcess", method = RequestMethod.POST)
 	public ModelAndView addUser(HttpServletRequest request, HttpServletResponse response,
 			@ModelAttribute("user") User user) {
 		userService.register(user);
 		return new ModelAndView("welcome", "firstname", user.getFirstname());
-	}
+	}*/
 }

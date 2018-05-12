@@ -1,7 +1,5 @@
 package com.java.ee.maker.checker.persistance.impl;
 
-import java.util.List;
-
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +28,7 @@ public class UserDaoImpl implements UserDao {
 	 */
 	@Override
 	public void register(User user) {
-		String sql = "insert into users values(?,?,?,?,?,?,?)";
+		/*String sql = "insert into users values(?,?,?,?,?,?,?)";
 	    jdbcTemplate.update(sql, new Object[] { user.getUsername(), user.getPassword(), user.getFirstname(),
 	    user.getLastname(), user.getEmail(),  user.getPhone() });
 	    }
@@ -39,7 +37,7 @@ public class UserDaoImpl implements UserDao {
 	    + "'";
 	    List<User> users = jdbcTemplate.query(sql, new UserMapper());
 	    return users.size() > 0 ? users.get(0) : null;
-	    }
+	    }*/
 		
 	}
 	
