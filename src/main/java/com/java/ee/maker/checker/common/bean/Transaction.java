@@ -16,6 +16,7 @@ public class Transaction {
 	private Integer type;
 	private Integer id;
 	private Integer userId;
+	private Integer approverId;
 	private Integer status;
 	private String remark;
 	private BigDecimal amount;
@@ -138,6 +139,21 @@ public class Transaction {
 	 */
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	/**
+	 * @return the approverId
+	 */
+	public Integer getApproverId() {
+		return approverId;
+	}
+
+	/**
+	 * @param approverId
+	 *            the approverId to set
+	 */
+	public void setApproverId(Integer approverId) {
+		this.approverId = approverId;
 	}
 
 }

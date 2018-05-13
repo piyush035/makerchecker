@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.java.ee.maker.checker.common.bean.Login;
 import com.java.ee.maker.checker.common.bean.Transaction;
 import com.java.ee.maker.checker.common.bean.User;
 import com.java.ee.maker.checker.service.TransactionService;
@@ -28,7 +29,7 @@ public class TransactionController {
 
 	/** The Constant logger. */
 	private static final Logger logger = Logger.getLogger(RegistrationController.class);
-	
+
 	/** The transaction service. */
 	@Autowired
 	public TransactionService transactionService;
@@ -52,32 +53,86 @@ public class TransactionController {
 	/**
 	 * Creates the transaction process.
 	 *
-	 * @param request            the request
-	 * @param response            the response
-	 * @param transaction the transaction
+	 * @param request
+	 *            the request
+	 * @param response
+	 *            the response
+	 * @param transaction
+	 *            the transaction
 	 * @return the model and view
 	 */
 	@RequestMapping(value = "/createTransactionProcess", method = RequestMethod.POST)
 	public ModelAndView createTransactionProcess(HttpServletRequest request, HttpServletResponse response,
 			@ModelAttribute("transaction") Transaction transaction) {
-		logger.info(""+transaction);
-		User user =(User)request.getSession().getAttribute("user");
+		logger.info("" + transaction);
+		User user = (User) request.getSession().getAttribute("user");
 		transaction.setUserId(user.getId());
 		transactionService.createTransaction(transaction);
 		return new ModelAndView("welcome", "firstname", transaction.getName());
 	}
-	
+
 	/**
 	 * Creates the transaction process.
+	 *
+	 * @param request
+	 *            the request
+	 * @param response
+	 *            the response
+	 * @return the model and view
+	 */
+	@RequestMapping(value = "/viewAllTransaction", method = RequestMethod.GET)
+	public ModelAndView viewAllTransaction(HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mav = null;
+		User user = (User) request.getSession().getAttribute("user");
+		if (null == user) {
+			mav = new ModelAndView("login");
+			mav.addObject("login", new Login());
+		} else {
+			mav = new ModelAndView("viewalltransaction");
+			mav.addObject("alltransaction", transactionService.getAllTransaction(user));
+		}
+		return mav;
+	}
+
+	/**
+	 * Approve transaction.
 	 *
 	 * @param request the request
 	 * @param response the response
 	 * @return the model and view
 	 */
-	@RequestMapping(value = "/viewAllTransaction", method = RequestMethod.POST)
-	public ModelAndView createTransactionProcess(HttpServletRequest request, HttpServletResponse response) {
-		ModelAndView mav = new ModelAndView("viewAllTransaction");
-		mav.addObject("transaction", new Transaction());
+	@RequestMapping(value = "/approveTransaction", method = RequestMethod.GET)
+	public ModelAndView approveTransaction(HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mav = null;
+		User user = (User) request.getSession().getAttribute("user");
+		if (null == user) {
+			mav = new ModelAndView("login");
+			mav.addObject("login", new Login());
+		} else {
+			mav = new ModelAndView("viewalltransaction");
+			mav.addObject("alltransaction", transactionService.getAllTransaction(user));
+		}
+		return mav;
+	}
+
+	/**
+	 * Reject transaction.
+	 *
+	 * @param request the request
+	 * @param response the response
+	 * @return the model and view
+	 */
+	@RequestMapping(value = "/rejectTransaction", method = RequestMethod.GET)
+	public ModelAndView rejectTransaction(HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mav = null;
+		User user = (User) request.getSession().getAttribute("user");
+		if (null == user) {
+			mav = new ModelAndView("login");
+			mav.addObject("login", new Login());
+		} else {
+			mav = new ModelAndView("viewalltransaction");
+			mav.addObject("alltransaction", transactionService.getAllTransaction(user));
+		}
 		return mav;
 	}
 }

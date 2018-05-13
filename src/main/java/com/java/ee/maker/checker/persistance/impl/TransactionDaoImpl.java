@@ -41,7 +41,7 @@ public class TransactionDaoImpl implements TransactionDao {
 	 */
 	@Override
 	public boolean create(Transaction transaction) {
-		String sql = "insert into transaction (`name`,`accountNumber`,`type`,`status`,`amount`,`comment`,`userid`) values(?,?,?,?,?,?)";
+		String sql = "insert into transaction (`name`,`accountNumber`,`type`,`status`,`amount`,`comment`,`userid`) values(?,?,?,?,?,?,?)";
 		int result = jdbcTemplate.update(sql,
 				new Object[] { transaction.getName(), transaction.getAccountNumber(), transaction.getType(),
 						transaction.getStatus(), transaction.getAmount(), transaction.getRemark(),
@@ -49,8 +49,12 @@ public class TransactionDaoImpl implements TransactionDao {
 		return result == 0 ? false : true;
 	}
 
-	/* (non-Javadoc)
-	 * @see com.java.ee.maker.checker.persistance.TransactionDao#getAllTransaction(com.java.ee.maker.checker.common.bean.User, int)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.java.ee.maker.checker.persistance.TransactionDao#getAllTransaction(com.
+	 * java.ee.maker.checker.common.bean.User, int)
 	 */
 	public List<Transaction> getAllTransaction(User user, int status) {
 		String sql = "select * from transaction where userid <>'" + user.getId() + "' and status ='" + status + "'";
@@ -71,6 +75,7 @@ class TransactionMapper implements RowMapper<Transaction> {
 		transaction.setAmount(rs.getBigDecimal("amount"));
 		transaction.setRemark(rs.getString("comment"));
 		transaction.setUserId(rs.getInt("userid"));
+		transaction.setApproverId(rs.getInt("approverId"));
 		return transaction;
 	}
 }

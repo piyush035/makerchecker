@@ -21,6 +21,9 @@
 		<tr>
 			<td><a href="createTransaction">Create Transaction</a></td>
 		</tr>
+		<tr>
+			<td><a href="viewAllTransaction">Approve/Reject Transaction</a></td>
+		</tr>
 	</table>
 </body>
 </html>

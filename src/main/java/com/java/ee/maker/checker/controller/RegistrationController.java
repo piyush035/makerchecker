@@ -64,6 +64,8 @@ public class RegistrationController {
 			@ModelAttribute("user") User user) {
 		logger.info("addUser {}" + user);
 		userService.register(user);
-		return new ModelAndView("welcome", "firstname", user.getFirstname());
+		ModelAndView mav = new ModelAndView("login");
+		mav.addObject("login", new Login());
+		return mav;
 	}
 }
