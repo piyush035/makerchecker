@@ -13,7 +13,8 @@ public class User {
 	private String firstname;
 	private String lastname;
 	private String email;
-	private int phone;
+	private Integer phone;
+	private Integer id;
 
 	public String getUsername() {
 		return username;
@@ -55,11 +56,27 @@ public class User {
 		this.email = email;
 	}
 
-	public int getPhone() {
+	public Integer getPhone() {
 		return phone;
 	}
 
-	public void setPhone(int phone) {
+	public void setPhone(Integer phone) {
 		this.phone = phone;
 	}
+
+	/**
+	 * @return the id
+	 */
+	public Integer getId() {
+		return id;
+	}
+
+	/**
+	 * @param id
+	 *            the id to set
+	 */
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
 }

@@ -1,5 +1,6 @@
 package com.java.ee.maker.checker.service;
 
+import com.java.ee.maker.checker.common.bean.Login;
 import com.java.ee.maker.checker.common.bean.User;
 
 /**
@@ -17,9 +18,8 @@ public interface UserService {
 	/**
 	 * Validate user.
 	 *
-	 * @param userName the user name
-	 * @param password the password
+	 * @param login the login
 	 * @return the user
 	 */
-	User validateUser(String userName, String password);
+	User validateUser(Login login);
 }
