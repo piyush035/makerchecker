@@ -10,6 +10,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -17,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.java.ee.maker.checker.common.bean.Login;
 import com.java.ee.maker.checker.common.bean.Transaction;
 import com.java.ee.maker.checker.common.bean.User;
+import com.java.ee.maker.checker.common.constant.TransactionStatus;
 import com.java.ee.maker.checker.service.TransactionService;
 
 // TODO: Auto-generated Javadoc
@@ -102,11 +104,13 @@ public class TransactionController {
 	 *            the request
 	 * @param response
 	 *            the response
+	 * @param id
+	 *            the id
 	 * @return the model and view
 	 */
 	@RequestMapping(value = "/approveTransaction", method = RequestMethod.GET)
 	public ModelAndView approveTransaction(HttpServletRequest request, HttpServletResponse response,
-			@ModelAttribute("transaction") int id) {
+			@RequestAttribute(name = "id") int id) {
 		ModelAndView mav = null;
 		User user = (User) request.getSession().getAttribute("user");
 		if (null == user) {
@@ -114,7 +118,7 @@ public class TransactionController {
 			mav.addObject("login", new Login());
 		} else {
 			mav = new ModelAndView("approvetransaction");
-			Transaction transaction =  transactionService.getTransaction(id);
+			Transaction transaction = transactionService.getTransaction(id);
 			mav.addObject("transaction", transaction);
 		}
 		return mav;
@@ -130,15 +134,89 @@ public class TransactionController {
 	 * @return the model and view
 	 */
 	@RequestMapping(value = "/rejectTransaction", method = RequestMethod.GET)
-	public ModelAndView rejectTransaction(HttpServletRequest request, HttpServletResponse response) {
+	public ModelAndView rejectTransaction(HttpServletRequest request, HttpServletResponse response,
+			@RequestAttribute(name = "id") int id) {
 		ModelAndView mav = null;
 		User user = (User) request.getSession().getAttribute("user");
 		if (null == user) {
 			mav = new ModelAndView("login");
 			mav.addObject("login", new Login());
 		} else {
-			mav = new ModelAndView("viewalltransaction");
-			mav.addObject("alltransaction", transactionService.getAllTransaction(user));
+			mav = new ModelAndView("rejecttransaction");
+			Transaction transaction = transactionService.getTransaction(id);
+			mav.addObject("transaction", transaction);
+		}
+		return mav;
+	}
+
+	/**
+	 * Approve transaction process.
+	 *
+	 * @param request
+	 *            the request
+	 * @param response
+	 *            the response
+	 * @param transaction
+	 *            the transaction
+	 * @return the model and view
+	 */
+	@RequestMapping(value = "/approveTransactionProcess", method = RequestMethod.POST)
+	public ModelAndView approveTransactionProcess(HttpServletRequest request, HttpServletResponse response,
+			@RequestAttribute(name = "id") int id, @RequestAttribute(name = "apprejnote") String apprejnote) {
+		ModelAndView mav = null;
+		User user = (User) request.getSession().getAttribute("user");
+		if (null == user) {
+			mav = new ModelAndView("login");
+			mav.addObject("login", new Login());
+		} else {
+			mav = new ModelAndView("success");
+			Transaction transaction = new Transaction();
+			transaction.setId(id);
+			transaction.setStatus(TransactionStatus.ACCEPTED.getCode());
+			transaction.setApproverId(user.getId());
+			transaction.setApprejnote(apprejnote);
+			boolean flag = transactionService.update(transaction);
+			if (flag) {
+				mav.addObject("message", "approved");
+			} else {
+				mav.addObject("message", "failed");
+			}
+		}
+		return mav;
+	}
+
+	/**
+	 * Reject transaction process.
+	 *
+	 * @param request
+	 *            the request
+	 * @param response
+	 *            the response
+	 * @param transaction
+	 *            the transaction
+	 * @return the model and view
+	 */
+	@RequestMapping(value = "/rejectTransactionProcess", method = RequestMethod.POST)
+	public ModelAndView rejectTransactionProcess(HttpServletRequest request, HttpServletResponse response,
+			@RequestAttribute(name = "id") int id, @RequestAttribute(name = "apprejnote") String apprejnote) {
+		ModelAndView mav = null;
+		User user = (User) request.getSession().getAttribute("user");
+		if (null == user) {
+			mav = new ModelAndView("login");
+			mav.addObject("login", new Login());
+		} else {
+			mav = new ModelAndView("success");
+			Transaction transaction = new Transaction();
+			transaction.setId(id);
+			transaction.setStatus(TransactionStatus.REJECTED.getCode());
+			transaction.setApproverId(user.getId());
+			transaction.setApprejnote(apprejnote);
+			boolean flag = transactionService.update(transaction);
+			if (flag) {
+				mav.addObject("message", "rejected");
+			} else {
+				mav.addObject("message", "failed");
+			}
 		}
 		return mav;
 	}

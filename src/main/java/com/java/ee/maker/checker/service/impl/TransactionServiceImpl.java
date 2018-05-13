@@ -60,6 +60,11 @@ public class TransactionServiceImpl implements TransactionService {
 	public Transaction getTransaction(int id) {
 		return transactionDao.getTransaction(id);
 	}
+	
+	@Override
+	public boolean update(Transaction transaction) {
+		return transactionDao.update(transaction);
+	}
 
 	/*
 	 * (non-Javadoc)

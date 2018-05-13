@@ -17,7 +17,6 @@ import com.java.ee.maker.checker.common.bean.Transaction;
 import com.java.ee.maker.checker.common.bean.User;
 import com.java.ee.maker.checker.persistance.TransactionDao;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class TransactionDaoImpl.
  *

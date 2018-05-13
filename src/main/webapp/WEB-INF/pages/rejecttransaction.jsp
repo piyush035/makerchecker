@@ -5,24 +5,26 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Create A Transaction</title>
+<title>Reject Transaction</title>
 </head>
-<body>
-	<h1 style="color: #5e9ca0;">Create a Transaction</h1>
-	<form:form id="createTransactionProcessForm" modelAttribute="transaction" action="createTransactionProcess" method="post">
+<body>	
+	<form:form id="rejectTransactionProcessForm" modelAttribute="transaction" action="rejectTransactionProcess" method="post">
+			<h1 style="color: #5e9ca0;">
+					Reject Transaction
+			</h1>
 			<table class="editorDemoTable" style="height: 428px;" width="373">
 				<tbody>
 					<tr>
 						<td><form:label path="name">Name: </form:label></td>
-						<td><form:input path="name" name="name" id="name" /></td>
+						<td><form:input path="name" name="name" id="name" disabled="true"/></td>
 					</tr>
 					<tr>
 						<td><form:label path="accountNumber">Account Number: </form:label></td>
-						<td><form:input path="accountNumber" name="accountNumber" id="accountNumber" /></td>
+						<td><form:input path="accountNumber" name="accountNumber" id="accountNumber" disabled="true"/></td>
 					</tr>
 					<tr>
 						<td><form:label path="type">Transaction Type: </form:label></td>
-						<td><form:select path="type" name="type" id="type">
+						<td><form:select path="type" name="type" id="type" disabled="true">
 	  							<form:option value="1">Credit</form:option>
 	  							<form:option value="2">Debit</form:option>
 							</form:select>
@@ -30,15 +32,26 @@
 					</tr>
 					<tr>
 						<td><form:label path="amount">Amount: </form:label></td>
-						<td><form:input path="amount" name="amount" id="amount" /></td>
+						<td><form:input path="amount" name="amount" id="amount" disabled="true" /></td>
 					</tr>
 					<tr>
 						<td><form:label path="remark">Remark: </form:label></td>
-						<td><form:input path="remark" name="remark" id="remark" /></td>
+						<td><form:input path="remark" name="remark" id="remark" disabled="true"/></td>
+					</tr>
+					<tr>
+						<td><form:label path="apprejnote">
+									Rejection Note:
+							</form:label>
+						</td>
+						<td><form:textarea path="apprejnote" name="apprejnote" id="apprejnote"/></td>
 					</tr>
 					<tr>
 						<td></td>
-						<td align="left"><form:button id="createTransationBtn" name="createTransationBtn">Submit</form:button></td>
+						<td align="left">
+							<form:button id="approveTransationBtn" name="approveTransationBtn">
+									Reject
+							</form:button>
+						</td>
 					</tr>
 				</tbody>
 			</table>

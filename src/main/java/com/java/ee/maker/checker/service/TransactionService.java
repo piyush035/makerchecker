@@ -23,11 +23,12 @@ public interface TransactionService {
 	 * @return true, if successful
 	 */
 	boolean createTransaction(Transaction transactionService);
-	
+
 	/**
 	 * Gets the transaction.
 	 *
-	 * @param id the id
+	 * @param id
+	 *            the id
 	 * @return the transaction
 	 */
 	Transaction getTransaction(int id);
@@ -58,4 +59,13 @@ public interface TransactionService {
 	 * @return true, if successful
 	 */
 	boolean rejectTransaction(Transaction transaction);
+
+	/**
+	 * Update.
+	 *
+	 * @param transaction
+	 *            the transaction
+	 * @return true, if successful
+	 */
+	boolean update(Transaction transaction);
 }
