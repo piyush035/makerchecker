@@ -41,6 +41,14 @@ public interface TransactionService {
 	 * @return the all transaction
 	 */
 	List<Transaction> getAllTransaction(User user);
+	
+	/**
+	 * Gets the all transaction of user.
+	 *
+	 * @param user the user
+	 * @return the all transaction of user
+	 */
+	List<Transaction> getAllTransactionOfUser(User user);
 
 	/**
 	 * Approve transaction.

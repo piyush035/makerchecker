@@ -44,5 +44,20 @@ public interface TransactionDao {
 	 */
 	boolean update(Transaction transaction);
 	
+	/**
+	 * Gets the transaction.
+	 *
+	 * @param id the id
+	 * @return the transaction
+	 */
 	Transaction getTransaction(int id);
+
+	/**
+	 * Gets the all transaction of user.
+	 *
+	 * @param user the user
+	 * @param code the code
+	 * @return the all transaction of user
+	 */
+	List<Transaction> getAllTransactionOfUser(User user, int code);
 }

@@ -52,15 +52,20 @@ public class TransactionServiceImpl implements TransactionService {
 	public List<Transaction> getAllTransaction(User user) {
 		return transactionDao.getAllTransaction(user, TransactionStatus.PENDING.getCode());
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.java.ee.maker.checker.service.TransactionService#getTransaction(int)
 	 */
 	@Override
 	public Transaction getTransaction(int id) {
 		return transactionDao.getTransaction(id);
 	}
-	
+
+	/* (non-Javadoc)
+	 * @see com.java.ee.maker.checker.service.TransactionService#update(com.java.ee.maker.checker.common.bean.Transaction)
+	 */
 	@Override
 	public boolean update(Transaction transaction) {
 		return transactionDao.update(transaction);
@@ -75,13 +80,23 @@ public class TransactionServiceImpl implements TransactionService {
 	 */
 	@Override
 	public boolean approveTransaction(Transaction transaction) {
-		//transaction.setStatus(TransactionStatus.);
 		transactionDao.update(transaction);
 		return true;
 	}
 
 	/* (non-Javadoc)
-	 * @see com.java.ee.maker.checker.service.TransactionService#rejectTransaction(com.java.ee.maker.checker.common.bean.Transaction)
+	 * @see com.java.ee.maker.checker.service.TransactionService#getAllTransactionOfUser(com.java.ee.maker.checker.common.bean.User)
+	 */
+	public List<Transaction> getAllTransactionOfUser(User user) {
+		return transactionDao.getAllTransactionOfUser(user, TransactionStatus.PENDING.getCode());
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.java.ee.maker.checker.service.TransactionService#rejectTransaction(com.
+	 * java.ee.maker.checker.common.bean.Transaction)
 	 */
 	@Override
 	public boolean rejectTransaction(Transaction transaction) {
