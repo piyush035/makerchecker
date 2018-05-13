@@ -56,5 +56,6 @@
 				</tbody>
 			</table>
 	</form:form>
+	<a href="login">Home</a>
 </body>
 </html>

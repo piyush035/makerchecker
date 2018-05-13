@@ -17,6 +17,7 @@ import com.java.ee.maker.checker.common.bean.Transaction;
 import com.java.ee.maker.checker.common.bean.User;
 import com.java.ee.maker.checker.persistance.TransactionDao;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class TransactionDaoImpl.
  *
@@ -63,8 +64,12 @@ public class TransactionDaoImpl implements TransactionDao {
 		return transactionsList;
 	}
 
-	/* (non-Javadoc)
-	 * @see com.java.ee.maker.checker.persistance.TransactionDao#update(com.java.ee.maker.checker.common.bean.Transaction)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.java.ee.maker.checker.persistance.TransactionDao#update(com.java.ee.maker
+	 * .checker.common.bean.Transaction)
 	 */
 	@Override
 	public boolean update(Transaction transaction) {
@@ -73,8 +78,10 @@ public class TransactionDaoImpl implements TransactionDao {
 				transaction.getApproverId(), transaction.getId() });
 		return result == 0 ? false : true;
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.java.ee.maker.checker.persistance.TransactionDao#getTransaction(int)
 	 */
 	@Override
@@ -84,6 +91,15 @@ public class TransactionDaoImpl implements TransactionDao {
 		return transactionsList.size() > 0 ? transactionsList.get(0) : null;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.java.ee.maker.checker.persistance.TransactionDao#getAllTransactionOfUser(com.java.ee.maker.checker.common.bean.User, int)
+	 */
+	@Override
+	public List<Transaction> getAllTransactionOfUser(User user, int code) {
+		String sql = "select * from transaction where userid ='" + user.getId() + "' and status <>'" + code + "'";
+		List<Transaction> transactionsList = jdbcTemplate.query(sql, new TransactionMapper());
+		return transactionsList;
+	}
 
 }
 
@@ -97,6 +113,7 @@ class TransactionMapper implements RowMapper<Transaction> {
 		transaction.setStatus(rs.getInt("status"));
 		transaction.setAmount(rs.getBigDecimal("amount"));
 		transaction.setRemark(rs.getString("comment"));
+		transaction.setApprejnote(rs.getString("apprejnote"));
 		transaction.setUserId(rs.getInt("userid"));
 		transaction.setApproverId(rs.getInt("approverId"));
 		return transaction;

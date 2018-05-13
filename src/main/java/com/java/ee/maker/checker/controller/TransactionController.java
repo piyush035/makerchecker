@@ -96,6 +96,29 @@ public class TransactionController {
 		}
 		return mav;
 	}
+	
+	/**
+	 * Creates the transaction process.
+	 *
+	 * @param request
+	 *            the request
+	 * @param response
+	 *            the response
+	 * @return the model and view
+	 */
+	@RequestMapping(value = "/seeAllTransaction", method = RequestMethod.GET)
+	public ModelAndView seeAllTransaction(HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mav = null;
+		User user = (User) request.getSession().getAttribute("user");
+		if (null == user) {
+			mav = new ModelAndView("login");
+			mav.addObject("login", new Login());
+		} else {
+			mav = new ModelAndView("alltransaction");
+			mav.addObject("transactions", transactionService.getAllTransactionOfUser(user));
+		}
+		return mav;
+	}
 
 	/**
 	 * Approve transaction.
