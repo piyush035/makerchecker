@@ -25,7 +25,7 @@
 			<td><a href="viewAllTransaction">Approve/Reject Transaction</a></td>
 		</tr>
 		<tr>
-			<td><a href="seeAllTransaction">See All Approved/Rejected Transaction</a></td>
+			<td><a href="seeAllTransaction">See All My Approved/Rejected Transaction</a></td>
 		</tr>
 	</table>
 </body>

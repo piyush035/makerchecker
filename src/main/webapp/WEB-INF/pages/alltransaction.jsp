@@ -8,7 +8,7 @@
 <title>All Transaction</title>
 </head>
 <body>
-<h1 style="color: #5e9ca0;">View All Transaction</h1>
+<h1 style="color: #5e9ca0;">View All My Transactions Approved and Rejected</h1>
 	<table border="1" style="border-collapse: collapse; width: 100%;">
 		<tbody>
 			<tr>
@@ -37,7 +37,7 @@
 					<td style="width: 16.6667%;">${listValue.remark}</td>
 					<td style="width: 16.6667%;">
 						<c:if test="${listValue.status == 1}">
-							ACCEPTED
+							APPROVED
 						</c:if>
 						<c:if test="${listValue.status == 2}">
 							REJECTED
