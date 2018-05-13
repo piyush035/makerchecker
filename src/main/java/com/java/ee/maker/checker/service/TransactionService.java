@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package com.java.ee.maker.checker.service;
 
 import java.util.List;
@@ -20,6 +23,14 @@ public interface TransactionService {
 	 * @return true, if successful
 	 */
 	boolean createTransaction(Transaction transactionService);
+	
+	/**
+	 * Gets the transaction.
+	 *
+	 * @param id the id
+	 * @return the transaction
+	 */
+	Transaction getTransaction(int id);
 
 	/**
 	 * Gets the all transaction.
@@ -29,4 +40,22 @@ public interface TransactionService {
 	 * @return the all transaction
 	 */
 	List<Transaction> getAllTransaction(User user);
+
+	/**
+	 * Approve transaction.
+	 *
+	 * @param transaction
+	 *            the transaction
+	 * @return true, if successful
+	 */
+	boolean approveTransaction(Transaction transaction);
+
+	/**
+	 * Reject transaction.
+	 *
+	 * @param transaction
+	 *            the transaction
+	 * @return true, if successful
+	 */
+	boolean rejectTransaction(Transaction transaction);
 }

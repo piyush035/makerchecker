@@ -17,6 +17,7 @@ import com.java.ee.maker.checker.common.bean.Transaction;
 import com.java.ee.maker.checker.common.bean.User;
 import com.java.ee.maker.checker.persistance.TransactionDao;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class TransactionDaoImpl.
  *
@@ -56,11 +57,34 @@ public class TransactionDaoImpl implements TransactionDao {
 	 * com.java.ee.maker.checker.persistance.TransactionDao#getAllTransaction(com.
 	 * java.ee.maker.checker.common.bean.User, int)
 	 */
+	@Override
 	public List<Transaction> getAllTransaction(User user, int status) {
 		String sql = "select * from transaction where userid <>'" + user.getId() + "' and status ='" + status + "'";
 		List<Transaction> transactionsList = jdbcTemplate.query(sql, new TransactionMapper());
 		return transactionsList;
 	}
+
+	/* (non-Javadoc)
+	 * @see com.java.ee.maker.checker.persistance.TransactionDao#update(com.java.ee.maker.checker.common.bean.Transaction)
+	 */
+	@Override
+	public boolean update(Transaction transaction) {
+		String sql = "UPDATE transaction SET status = ?, apprejnote=?,approverId=? where id=?";
+		int result = jdbcTemplate.update(sql, new Object[] { transaction.getStatus(), transaction.getApprejnote(),
+				transaction.getApproverId(), transaction.getId() });
+		return result == 0 ? false : true;
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.java.ee.maker.checker.persistance.TransactionDao#getTransaction(int)
+	 */
+	@Override
+	public Transaction getTransaction(int id) {
+		String sql = "select * from transaction where id ='" + id + "'";
+		List<Transaction> transactionsList = jdbcTemplate.query(sql, new TransactionMapper());
+		return transactionsList.size() > 0 ? transactionsList.get(0) : null;
+	}
+
 
 }
 

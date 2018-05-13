@@ -27,9 +27,22 @@ public interface TransactionDao {
 	/**
 	 * Gets the all transaction.
 	 *
-	 * @param user the user
-	 * @param status the status
+	 * @param user
+	 *            the user
+	 * @param status
+	 *            the status
 	 * @return the all transaction
 	 */
 	List<Transaction> getAllTransaction(User user, int status);
+
+	/**
+	 * Update.
+	 *
+	 * @param transaction
+	 *            the transaction
+	 * @return true, if successful
+	 */
+	boolean update(Transaction transaction);
+	
+	Transaction getTransaction(int id);
 }

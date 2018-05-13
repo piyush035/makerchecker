@@ -51,11 +51,18 @@ CREATE TABLE IF NOT EXISTS `testdb`.`transaction` (
   `accountNumber` INT(45) NULL,
   `type` INT NOT NULL,
   `status` INT NOT NULL,
-  `amount` DECIMAL(45) NULL,
-  `comment` VARCHAR(100) NULL,  
+  `amount` DECIMAL(45,2) NULL,
+  `comment` VARCHAR(500) NULL,  
+  `apprejnote` VARCHAR(500) NULL,  
   `userid` INT NULL,
+  `approverId` INT NULL,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`type`) REFERENCES transactiontype(`id`),
   FOREIGN KEY (`status`) REFERENCES transactionstatus(`id`),
-  FOREIGN KEY (`userid`) REFERENCES users(`id`));
+  FOREIGN KEY (`userid`) REFERENCES users(`id`),
+  FOREIGN KEY (`approverId`) REFERENCES users(`id`));
   
+select * from transaction;
+select * from transactiontype;
+select * from users;
+commit;

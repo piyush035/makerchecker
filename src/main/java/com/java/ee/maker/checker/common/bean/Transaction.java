@@ -19,6 +19,7 @@ public class Transaction {
 	private Integer approverId;
 	private Integer status;
 	private String remark;
+	private String apprejnote;
 	private BigDecimal amount;
 
 	/**
@@ -156,4 +157,17 @@ public class Transaction {
 		this.approverId = approverId;
 	}
 
+	/**
+	 * @return the apprejnote
+	 */
+	public String getApprejnote() {
+		return apprejnote;
+	}
+
+	/**
+	 * @param apprejnote the apprejnote to set
+	 */
+	public void setApprejnote(String apprejnote) {
+		this.apprejnote = apprejnote;
+	}
 }

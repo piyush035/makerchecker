@@ -14,6 +14,7 @@ import com.java.ee.maker.checker.common.bean.Login;
 import com.java.ee.maker.checker.common.bean.User;
 import com.java.ee.maker.checker.persistance.UserDao;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class UserDaoImpl.
  *
@@ -45,6 +46,9 @@ public class UserDaoImpl implements UserDao {
 
 	
 	
+	/* (non-Javadoc)
+	 * @see com.java.ee.maker.checker.persistance.UserDao#validateUser(com.java.ee.maker.checker.common.bean.Login)
+	 */
 	public User validateUser(Login login) {
 		String sql = "select * from users where username='" + login.getUsername() + "'";
 		List<User> users = jdbcTemplate.query(sql, new UserMapper());
