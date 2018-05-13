@@ -14,6 +14,7 @@ public class User {
 	private String lastname;
 	private String email;
 	private Integer phone;
+	private Integer id;
 
 	public String getUsername() {
 		return username;
@@ -62,4 +63,20 @@ public class User {
 	public void setPhone(Integer phone) {
 		this.phone = phone;
 	}
+
+	/**
+	 * @return the id
+	 */
+	public Integer getId() {
+		return id;
+	}
+
+	/**
+	 * @param id
+	 *            the id to set
+	 */
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
 }

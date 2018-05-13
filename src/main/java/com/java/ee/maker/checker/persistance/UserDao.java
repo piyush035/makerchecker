@@ -3,6 +3,7 @@
  */
 package com.java.ee.maker.checker.persistance;
 
+import com.java.ee.maker.checker.common.bean.Login;
 import com.java.ee.maker.checker.common.bean.User;
 
 /**
@@ -27,5 +28,5 @@ public interface UserDao {
 	 *            the login
 	 * @return the user
 	 */
-	User login(String userName, String password);
+	User validateUser(Login login);
 }

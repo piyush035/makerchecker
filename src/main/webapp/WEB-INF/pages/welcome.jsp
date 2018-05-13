@@ -16,7 +16,10 @@
 		<tr>
 		</tr>
 		<tr>
-			<td><a href="home.jsp">Home</a></td>
+			<td><a href="home.jsp">Home</a></td>			
+		</tr>
+		<tr>
+			<td><a href="createTransaction">Create Transaction</a></td>
 		</tr>
 	</table>
 </body>

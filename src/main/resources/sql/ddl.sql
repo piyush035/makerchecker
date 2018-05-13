@@ -3,22 +3,22 @@ USE testdb;
 
 DROP TABLE IF EXISTS `testdb`.`transactiontype`;
 CREATE TABLE `testdb`.`transactiontype` (
-  `id` INT NOT NULL AUTO_INCREMENT,
+  `id` INT NOT NULL,
   `type` VARCHAR(45) NOT NULL,  
   PRIMARY KEY (`id`));
 
-INSERT into transactiontype (`type`) VALUES ('Credit');
-INSERT into transactiontype (`type`) VALUES ('Debit');
+INSERT into transactiontype (`id`,`type`) VALUES (1,'Credit');
+INSERT into transactiontype (`id`,`type`) VALUES (2,'Debit');
 
 DROP TABLE IF EXISTS `testdb`.`transactionstatus`;
-CREATE TABLE `testdb`.`transactionstatus` (
-  `id` INT NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `testdb`.`transactionstatus` (
+  `id` INT NOT NULL,
   `type` VARCHAR(45) NOT NULL,  
   PRIMARY KEY (`id`));
 
-INSERT into transactionstatus (`type`) VALUES ('accepted');
-INSERT into transactionstatus (`type`) VALUES ('rejected');
-INSERT into transactionstatus (`type`) VALUES ('checking');
+INSERT into transactionstatus (`id`,`type`) VALUES (1,'accepted');
+INSERT into transactionstatus (`id`,`type`) VALUES (2,'rejected');
+INSERT into transactionstatus (`id`,`type`) VALUES (3,'pending');
 
 DROP TABLE IF EXISTS `testdb`.`users`;
 CREATE TABLE `testdb`.`users` (
@@ -44,4 +44,18 @@ CREATE TABLE `testdb`.`users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY (`username`));
   
-Select * FROM `testdb`.`users`
+DROP TABLE IF EXISTS `testdb`.`transaction`;
+CREATE TABLE IF NOT EXISTS `testdb`.`transaction` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NOT NULL,
+  `accountNumber` INT(45) NULL,
+  `type` INT NOT NULL,
+  `status` INT NOT NULL,
+  `amount` DECIMAL(45) NULL,
+  `comment` VARCHAR(100) NULL,  
+  `userid` INT NULL,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`type`) REFERENCES transactiontype(`id`),
+  FOREIGN KEY (`status`) REFERENCES transactionstatus(`id`),
+  FOREIGN KEY (`userid`) REFERENCES users(`id`));
+  

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
+import com.java.ee.maker.checker.common.bean.Login;
 import com.java.ee.maker.checker.common.bean.User;
 import com.java.ee.maker.checker.persistance.UserDao;
 
@@ -37,21 +38,17 @@ public class UserDaoImpl implements UserDao {
 	 */
 	@Override
 	public void register(User user) {
-		String sql = "insert into users values(?,?,?,?,?,?)";
+		String sql = "insert into users (`username`,`password`,`firstname`,`lastname`,`email`,`phone`) values(?,?,?,?,?,?)";
 		jdbcTemplate.update(sql, new Object[] { user.getUsername(), user.getPassword(), user.getFirstname(),
 				user.getLastname(), user.getEmail(), user.getPhone() });
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.java.ee.maker.checker.persistance.UserDao#login(java.lang.String,
-	 * java.lang.String)
-	 */
-	@Override
-	public User login(String userName, String password) {
-		// TODO Auto-generated method stub
-		return null;
+	
+	
+	public User validateUser(Login login) {
+		String sql = "select * from users where username='" + login.getUsername() + "'";
+		List<User> users = jdbcTemplate.query(sql, new UserMapper());
+		return users.size() > 0 ? users.get(0) : null;
 	}
 
 }
@@ -65,6 +62,7 @@ class UserMapper implements RowMapper<User> {
 		user.setLastname(rs.getString("lastname"));
 		user.setEmail(rs.getString("email"));
 		user.setPhone(rs.getInt("phone"));
+		user.setId(rs.getInt("id"));
 		return user;
 	}
 }
