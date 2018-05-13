@@ -19,6 +19,7 @@ import com.java.ee.maker.checker.common.bean.Transaction;
 import com.java.ee.maker.checker.common.bean.User;
 import com.java.ee.maker.checker.service.TransactionService;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class TransactionController.
  *
@@ -97,20 +98,24 @@ public class TransactionController {
 	/**
 	 * Approve transaction.
 	 *
-	 * @param request the request
-	 * @param response the response
+	 * @param request
+	 *            the request
+	 * @param response
+	 *            the response
 	 * @return the model and view
 	 */
 	@RequestMapping(value = "/approveTransaction", method = RequestMethod.GET)
-	public ModelAndView approveTransaction(HttpServletRequest request, HttpServletResponse response) {
+	public ModelAndView approveTransaction(HttpServletRequest request, HttpServletResponse response,
+			@ModelAttribute("transaction") int id) {
 		ModelAndView mav = null;
 		User user = (User) request.getSession().getAttribute("user");
 		if (null == user) {
 			mav = new ModelAndView("login");
 			mav.addObject("login", new Login());
 		} else {
-			mav = new ModelAndView("viewalltransaction");
-			mav.addObject("alltransaction", transactionService.getAllTransaction(user));
+			mav = new ModelAndView("approvetransaction");
+			Transaction transaction =  transactionService.getTransaction(id);
+			mav.addObject("transaction", transaction);
 		}
 		return mav;
 	}
@@ -118,8 +123,10 @@ public class TransactionController {
 	/**
 	 * Reject transaction.
 	 *
-	 * @param request the request
-	 * @param response the response
+	 * @param request
+	 *            the request
+	 * @param response
+	 *            the response
 	 * @return the model and view
 	 */
 	@RequestMapping(value = "/rejectTransaction", method = RequestMethod.GET)

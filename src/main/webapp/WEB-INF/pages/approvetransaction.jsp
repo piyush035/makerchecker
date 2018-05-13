@@ -8,17 +8,17 @@
 <title>Create A Transaction</title>
 </head>
 <body>
-	<h1 style="color: #5e9ca0;">Create a Transaction</h1>
-	<form:form id="createTransactionProcessForm" modelAttribute="transaction" action="createTransactionProcess" method="post">
+	<h1 style="color: #5e9ca0;">Approve Transaction</h1>
+	<form:form id="approveTransactionProcessForm" modelAttribute="transaction" action="approveTransactionProcessForm" method="post">
 			<table class="editorDemoTable" style="height: 428px;" width="373">
 				<tbody>
 					<tr>
 						<td><form:label path="name">Name: </form:label></td>
-						<td><form:input path="name" name="name" id="name" /></td>
+						<td><form:label path="name">${transaction.name} </form:label></td>
 					</tr>
 					<tr>
 						<td><form:label path="accountNumber">Account Number: </form:label></td>
-						<td><form:input path="accountNumber" name="accountNumber" id="accountNumber" /></td>
+						<td><form:input path="accountNumber" name="accountNumber" id="accountNumber" disabled/></td>
 					</tr>
 					<tr>
 						<td><form:label path="type">Transaction Type: </form:label></td>
