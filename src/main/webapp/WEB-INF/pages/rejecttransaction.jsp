@@ -12,6 +12,8 @@
 			<h1 style="color: #5e9ca0;">
 					Reject Transaction
 			</h1>
+			<form:input path="id" name="id" id="id" hidden="true"/>
+			
 			<table class="editorDemoTable" style="height: 428px;" width="373">
 				<tbody>
 					<tr>
